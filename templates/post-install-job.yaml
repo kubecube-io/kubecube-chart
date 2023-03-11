@@ -1,0 +1,70 @@
+{{- if eq .Values.global.certs.mode "custom" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubecube-static-resources
+  namespace: {{ template "kubecube.namespace" . }}
+data:
+  {{- print "warden-configuration.yaml: " | nindent 2 }} |-
+    {{- include "warden.webhook.configuration" . | nindent 4 }}
+{{- if eq .Values.global.componentsEnable.kubecube "true" }}
+  {{- print "kubecube-webhook-configuration.yaml: " | nindent 2 }} |-
+    {{- include "kubecube.webhook.configuration" . | nindent 4 }}
+{{- end }}
+---
+{{- end }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubecube-post-install
+  namespace: {{ template "kubecube.namespace" . }}
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: kubecube
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  parallelism: 1
+  completions: 1
+  template:
+    metadata:
+      name: kubecube
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: kubecube
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install
+          image: "{{ .Values.global.hub.registry }}/{{ .Values.global.hub.project }}/{{ .Values.global.images.kubectl }}"
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - |
+              bash <<'EOF'
+              set -ex
+              kubectl apply -f /static-resources --kubeconfig /etc/kubeconfigs/local-kubeconfig
+              EOF
+          volumeMounts:
+            - name: kubecube-static-resources
+              mountPath: /static-resources
+            - mountPath: /etc/kubeconfigs
+              name: kubeconfigs
+      volumes:
+        - name: kubecube-static-resources
+          configMap:
+            name: kubecube-static-resources
+        - name: kubeconfigs
+          secret:
+            secretName: kubeconfigs
+            defaultMode: 420
+            items:
+              - key: localCluster
+                path: local-kubeconfig

@@ -1,0 +1,56 @@
+apiVersion: hotplug.kubecube.io/v1
+kind: Hotplug
+metadata:
+  name: common
+spec:
+  component:
+    - name: audit
+      status: "{{ .Values.global.hotPlugEnable.common.audit }}"
+    - name: logseer
+      namespace: logseer
+      pkgName: logseer-v1.0.0.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.logseer }}"
+    - name: logseer-new
+      namespace: logseer
+      pkgName: logseer-2.3.0.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.logseerNew }}"
+    - env: |
+        clustername: "{{.cluster}}"
+      name: logagent
+      namespace: logagent
+      pkgName: logagent-v1.0.0.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.logagent }}"
+    - env: |
+        clustername: "{{.cluster}}"
+      name: logagent-new
+      namespace: logagent
+      pkgName: logagent-1.3.0.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.logagentNew }}"
+    - name: elasticsearch
+      namespace: elasticsearch
+      pkgName: elasticsearch-7.8.1.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.elasticsearch }}"
+    - env: |
+        grafana:
+          enabled: false
+        kubeEtcd:
+          enabled: false
+        prometheus:
+          enabled: "{{ .Values.global.hotPlugEnable.common.grafana }}"
+          prometheusSpec:
+            externalLabels:
+              cluster: "{{.cluster}}"
+            remoteWrite:
+            {{ if eq .Values.global.componentsEnable.kubecube "true" }}
+            - url: http://kubecube-thanos-receive:19291/api/v1/receive
+            {{ else }}
+            - url: http://{{ .Values.global.nodeIP }}:31291/api/v1/receive
+            {{ end }}
+      name: kubecube-monitoring
+      namespace: kubecube-monitoring
+      pkgName: kubecube-monitoring-15.4.12.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.monitoring }}"
+    - name: kubecube-thanos
+      namespace: kubecube-monitoring
+      pkgName: thanos-3.18.0.tgz
+      status: "{{ .Values.global.hotPlugEnable.common.thanos }}"

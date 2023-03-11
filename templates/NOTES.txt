@@ -1,0 +1,15 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about KubeCube, visit:
+
+  https://www.kubecube.io
+
+Let's have fun with KubeCube:
+
+  Please use 'admin/admin123' to access
+
+    {{ .Values.global.nodeIP }}:30080
+
+  You should change password after login.
