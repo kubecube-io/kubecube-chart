@@ -1,0 +1,24 @@
+{{- if eq .Values.global.componentsEnable.kubecube "true" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubecube-auth-mapping
+  namespace: {{ template "kubecube.namespace" . }}
+data:
+  deployments.manage: "deployments;deployments/rollback;deployments/scale;deployments/status;replicasets;replicasets/scale;replicasets/status;dashboards;horizontalpodautoscalers;horizontalpodautoscalers/status;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  statefulsets.manage: "statefulsets;statefulsets/scale;statefulsets/status;dashboards;horizontalpodautoscalers;horizontalpodautoscalers/status;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  daemonsets.manage: "daemonsets;daemonsets/status;dashboards;horizontalpodautoscalers;horizontalpodautoscalers/status;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  cronjobs.manage: "cronjobs;cronjobs/status;jobs;jobs/status;dashboards;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  jobs.manage: "jobs;jobs/status;dashboards;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  pods.manage: "dashboards;events;pods;pods/log;pods/attach;pods/status;pods/exec"
+  services.manage: "services;services/status;endpoints;events;pods"
+  ingresses.manage: "ingresses;ingresses/status;services"
+  loadbalancer.manager: "loadbalancers;dashboards;events"
+  stroage.manage: "persistentvolumeclaims;persistentvolumeclaims/status;pods;dashboards"
+  secrets.manage: "secrets"
+  configmaps.manage: "configmaps"
+  pdb.manage: "poddisruptionbudgets;poddisruptionbudgets/status"
+  crds.manage: "customresourcedefinitions"
+  olm.manage: "catalogsources;packagemanifests;clusterserviceversions;operatorgroups;subscriptions;installplans"
+{{- end }}
+  

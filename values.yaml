@@ -94,22 +94,22 @@ global:
 
   # kubecube all images
   images:
+    frontend: frontend:v1.2.0
     kubecube: cube:v1.7.7-test
     warden: warden:v1.7.7-test
     wardenInit: warden-init:v1.7.7-test
     dependenceJob: warden-dependence:v1.2.0
     audit: audit:v1.2.0
-    webconsole: webconsole:v1.2.4
+    webconsole: webconsole:v1.2.5
     cloudshell: cloudshell:v1.2.1
-    frontend: frontend:v1.2.0
     hnc: hnc/hnc-manager:v1.0.0
     ingressController: ingress-nginx/controller:v1.2.0
     ingressControllerJob: ingress-nginx/kube-webhook-certgen:v1.1.1
     localPathStorageProvisioner: rancher/local-path-provisioner:v0.0.19-m
     localPathStorageConfigmap: busybox:latest-m
     metricsServer: rancher/metrics-server:v0.4.1-m
-    cfssl: cfssl:latest
-    kubectl: kubecube/bitnami/kubectl:latest
+    cfssl: jitesoft/cfssl:1.6.3
+    kubectl: bitnami/kubectl:1.25.7
 
 kubecube:
   # kubecube/deployment.yaml
@@ -150,7 +150,7 @@ kubecube:
     downloadChartsUrl: "https://kubecube.nos-eastchina1.126.net/helm-chart/third/third-charts.tar.gz" # todo: this value can be removed
     pivotCubeSvc: kubecube:7443 # todo: this value can be removed
     jwtSecret: "56F0D8DB90241C6E"
-    retainMemberClusterResource: "false"
+    retainMemberClusterResource: "true"
     wardenRegisterModeEnable: "true"
 
   # kubecube/kubecube-auth-config.yaml

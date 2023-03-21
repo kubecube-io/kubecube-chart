@@ -50,7 +50,7 @@ spec:
             {{ if eq .Values.global.componentsEnable.kubecube "true" }}
             - -pivot-cube-host=kubecube:7443
             {{ else }}
-            - -pivot-cube-host="{{ .Values.global.nodeIP }}:30443"
+            - -pivot-cube-host={{ .Values.global.nodeIP }}:30443
             {{ end }}
             - -local-cluster-kubeconfig=/etc/kubeconfigs/local-kubeconfig
             - -pivot-cluster-kubeconfig=/etc/kubeconfigs/pivot-kubeconfig

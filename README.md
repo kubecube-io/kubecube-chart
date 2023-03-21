@@ -46,7 +46,7 @@ todo
 
 ## Install pivot cluster
 
-Switch to the `root` directory of the repo. Than create `pivot-value.yaml` and set values as you wish.
+Switch to the `root` directory of the repo. Then create `pivot-value.yaml` and set values as you wish.
 
 ```yaml
 # pivot-value.yaml
@@ -76,7 +76,7 @@ helm install kubecube -n kubecube-system --create-namespace ./kubecube-chart -f 
 
 ## Install member cluster
 
-Switch to the `root` directory of the repo. Than create `member-value.yaml` and set values as you wish.
+Switch to the `root` directory of the repo. Then create `member-value.yaml` and set values as you wish.
 
 ```yaml
 # member-value.yaml
@@ -85,7 +85,7 @@ global:
   # control-plane node IP which is used for exporting NodePort svc.
   nodeIP: x.x.x.x
   
-	# set "true" to deploy if there were not already in cluster.
+  # set "true" to deploy if there were not already in cluster.
   dependencesEnable: 
     ingressController: "false"
     localPathStorage: "false"
@@ -107,6 +107,7 @@ warden:
   containers:
     warden:
       args:
+        inMemberCluster: true
         cluster: "member-cluster"  # set current cluster name
 ```
 
@@ -115,6 +116,7 @@ helm install kubecube -n kubecube-system --create-namespace ./kubecube-chart -f 
 ```
 
 ## Uninstalling the Chart
+> **Note**: not found error can be ignored. 
 
 Before helm uninstall
 ```console

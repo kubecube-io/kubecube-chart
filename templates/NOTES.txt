@@ -10,6 +10,6 @@ Let's have fun with KubeCube:
 
   Please use 'admin/admin123' to access
 
-    {{ .Values.global.nodeIP }}:30080
+      http://{{ .Values.global.nodeIP }}:30080
 
   You should change password after login.
