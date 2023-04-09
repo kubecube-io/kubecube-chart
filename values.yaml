@@ -8,23 +8,20 @@ global:
   # set "true" to deploy if there were not already in cluster.
   dependencesEnable:
     hnc: "true"
-    ingressController: "false"
-    localPathStorage: "false"
-    metricServer: "false"
+    ingressController: "true"
+    localPathStorage: "true"
+    metricServer: "true"
 
   hotPlugEnable:
     pivot:
       logseer: "disabled"
-      logseerNew: "disabled"
-      logagentNew: "disabled"
+      logagent: "disabled"
+      elasticsearch: "disabled"
       monitoring: "enabled"
       thanos: "enabled"
     common:
-      audit: "disabled"
       logseer: "disabled"
-      logseerNew: "disabled"
       logagent: "disabled"
-      logagentNew: "disabled"
       elasticsearch: "disabled"
       monitoring: "enabled"
       thanos: "disabled"
@@ -94,10 +91,10 @@ global:
 
   # kubecube all images
   images:
-    frontend: frontend:v1.2.0
-    kubecube: cube:v1.7.7-test
-    warden: warden:v1.7.7-test
-    wardenInit: warden-init:v1.7.7-test
+    frontend: test-in-one:frontend-202303301938-0551bd89
+    kubecube: cube:latest
+    warden: warden:latest
+    wardenInit: warden-init:latest
     dependenceJob: warden-dependence:v1.2.0
     audit: audit:v1.2.0
     webconsole: webconsole:v1.2.5
@@ -108,7 +105,7 @@ global:
     localPathStorageProvisioner: rancher/local-path-provisioner:v0.0.19-m
     localPathStorageConfigmap: busybox:latest-m
     metricsServer: rancher/metrics-server:v0.4.1-m
-    cfssl: jitesoft/cfssl:1.6.3
+    cfssl: cfssl:latest
     kubectl: bitnami/kubectl:1.25.7
 
 kubecube:
@@ -199,8 +196,8 @@ warden:
         DetachedNsLabelKey: "detached.kubecube.io/ns"
     downloader:
       env:
-        downloadCharts: "true"  # download charts or use local
-        downloadURL: "https://kubecube.nos-eastchina1.126.net/helm-chart/third/third-charts.tar.gz" # where to download charts, empty means use default
+        downloadCharts: "false"  # download charts or use local
+        downloadURL: "" # where to download charts, empty means use default
 
 audit:
   # audit/deployment.yaml

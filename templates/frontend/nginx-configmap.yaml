@@ -88,6 +88,12 @@ data:
                 set $target http://logseer.logseer.svc.cluster.local;
                 proxy_pass $target;
             }
+    
+            location ^~ /api/v2/logseer/ {
+                resolver kube-dns.kube-system.svc.cluster.local;
+                set $target http://logseer.logseer.svc.cluster.local;
+                proxy_pass $target;
+            }
 
             location ^~ /api/v1/cube/ {
                 proxy_pass https://cube;

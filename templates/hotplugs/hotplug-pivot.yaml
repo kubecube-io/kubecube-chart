@@ -2,24 +2,20 @@
 apiVersion: hotplug.kubecube.io/v1
 kind: Hotplug
 metadata:
-  name: pivot-cluster
+  name: {{ .Values.warden.containers.warden.args.cluster }}
 spec:
   component:
-    - name: logseer
-      status: "{{ .Values.global.hotPlugEnable.pivot.logseer }}"
-    - name: logseer-new
-      status: "{{ .Values.global.hotPlugEnable.pivot.logseerNew }}"
-    - name: logagent-new
-      status: "{{ .Values.global.hotPlugEnable.pivot.logagentNew }}"
+    - name: elasticsearch
+      namespace: elasticsearch
+      pkgName: elasticsearch-7.8.1.tgz
+      status: "{{ .Values.global.hotPlugEnable.pivot.elasticsearch }}"
     - env: |
         grafana:
           enabled: true
-        kubeEtcd:
-          enabled: false
         prometheus:
           prometheusSpec:
             externalLabels:
-              cluster: "{{.cluster}}"
+              cluster: {{ "{{.cluster}}" | quote }}
             remoteWrite:
             - url: http://kubecube-thanos-receive:19291/api/v1/receive
       name: kubecube-monitoring
@@ -31,4 +27,8 @@ spec:
           replicationFactor: 1
       name: kubecube-thanos
       status: "{{ .Values.global.hotPlugEnable.pivot.thanos }}"
+    - name: logseer
+      status: "{{ .Values.global.hotPlugEnable.pivot.logseer }}"
+    - name: logagent
+      status: "{{ .Values.global.hotPlugEnable.pivot.logagent }}"
 {{- end }}
