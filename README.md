@@ -14,7 +14,7 @@ To install the chart with the release name `kubecube` or `warden` in namespace `
 - download to local
 
 ```console
-todo
+git clone https://github.com/kubecube-io/kubecube-chart.git
 ```
 
 ## Install pivot cluster
