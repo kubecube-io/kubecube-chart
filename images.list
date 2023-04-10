@@ -1,7 +1,7 @@
 hub.c.163.com/kubecube/audit:v1.2.0
 hub.c.163.com/kubecube/cloudshell:v1.2.6
 hub.c.163.com/kubecube/webconsole:v1.3.0
-hub.c.163.com/kubecube/test-in-one:frontend-202303301938-0551bd89
+hub.c.163.com/kubecube/frontend:v1.3.0-multi
 hub.c.163.com/kubecube/cube:v1.8.2
 hub.c.163.com/kubecube/warden:v1.8.2
 hub.c.163.com/kubecube/warden-init:v1.8.2

@@ -91,7 +91,7 @@ global:
 
   # kubecube all images
   images:
-    frontend: test-in-one:frontend-202303301938-0551bd89
+    frontend: frontend:v1.3.0-multi
     kubecube: cube:v1.8.2
     warden: warden:v1.8.2
     wardenInit: warden-init:v1.8.2
