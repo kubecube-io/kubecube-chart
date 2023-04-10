@@ -1,10 +1,10 @@
 hub.c.163.com/kubecube/audit:v1.2.0
-hub.c.163.com/kubecube/cloudshell:v1.2.1
-hub.c.163.com/kubecube/webconsole:v1.2.5
+hub.c.163.com/kubecube/cloudshell:v1.2.6
+hub.c.163.com/kubecube/webconsole:v1.3.0
 hub.c.163.com/kubecube/test-in-one:frontend-202303301938-0551bd89
-hub.c.163.com/kubecube/cube:latest
-hub.c.163.com/kubecube/warden:latest
-hub.c.163.com/kubecube/warden-init:latest
+hub.c.163.com/kubecube/cube:v1.8.2
+hub.c.163.com/kubecube/warden:v1.8.2
+hub.c.163.com/kubecube/warden-init:v1.8.2
 hub.c.163.com/kubecube/warden-dependence:v1.2.0
 hub.c.163.com/kubecube/alertmanager:v0.21.0
 hub.c.163.com/kubecube/prometheus-config-reloader:v0.47.0
@@ -29,5 +29,5 @@ hub.c.163.com/kubecube/bitnami/kubectl:1.25.7
 hub.c.163.com/kubecube/k8s-staging-prometheus-adapter/prometheus-adapter:v0.8.4
 hub.c.163.com/qingzhou/logseer:v2.3.0
 hub.c.163.com/kubecube/logseer-tools:v2.3.0
-docker.elastic.co/elasticsearch/elasticsearch
+docker.elastic.co/elasticsearch/elasticsearch:7.8.1
 loggieio/loggie:v1.3.0

@@ -92,13 +92,13 @@ global:
   # kubecube all images
   images:
     frontend: test-in-one:frontend-202303301938-0551bd89
-    kubecube: cube:latest
-    warden: warden:latest
-    wardenInit: warden-init:latest
+    kubecube: cube:v1.8.2
+    warden: warden:v1.8.2
+    wardenInit: warden-init:v1.8.2
     dependenceJob: warden-dependence:v1.2.0
     audit: audit:v1.2.0
-    webconsole: webconsole:v1.2.5
-    cloudshell: cloudshell:v1.2.1
+    webconsole: webconsole:v1.3.0
+    cloudshell: cloudshell:v1.2.6
     hnc: hnc/hnc-manager:v1.0.0
     ingressController: ingress-nginx/controller:v1.2.0
     ingressControllerJob: ingress-nginx/kube-webhook-certgen:v1.1.1

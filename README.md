@@ -9,40 +9,13 @@ KubeCube is an open source enterprise-level container platform that provides ent
 
 ## Get the Chart
 
-To install the chart with the release name `kubecube` in namespace `kubecube-system`:
+To install the chart with the release name `kubecube` or `warden` in namespace `kubecube-system`:
 
 - download to local
 
-Switch to the `root` directory of the repo.
-
 ```console
 todo
 ```
-
-- remote
-
-First, add the kubecube chart repo to your local repository.
-
-```console
-$ helm repo add kubecube-chart https://raw.githubusercontent.com/kubecube-io/kubecube-chart/master
-$ helm repo list
-NAME            URL
-kubecube-chart   https://raw.githubusercontent.com/karmada-io/kubecube/master/charts
-```
-
-With the repo added, available charts and versions can be viewed.
-
-```console
-helm search repo kubecube
-```
-
-Install the chart and specify the version to install with the --version argument. Replace <x.x.x> with your desired version.
-
-```console
-todo
-```
-
-> **Tip**: List all releases using `helm list`
 
 ## Install pivot cluster
 
@@ -111,9 +84,7 @@ global:
   # set "enabled" if wanna open log application.
   hotPlugEnable:
     common:
-      logseer: "disabled" 
       logagent: "disabled"
-      elasticsearch: "disabled"
 
   localKubeConfig: xx # local cluster kubeconfig base64
   pivotKubeConfig: xx # pivot cluster kubeconfig base64
