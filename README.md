@@ -1,6 +1,6 @@
-# KubeCube
+# KubeCube-Chart
 
-KubeCube is an open source enterprise-level container platform that provides enterprises with visualized management of Kubernetes resources and unified multi-cluster-multi-tenant management functions. KubeCube can simplify application deployment, manage application life cycles and provide rich monitoring and log auditing functions, helping companies quickly build a powerful and feature-rich container cloud platform.
+KubeCube-Chart is a helm chart for KubeCube. This version is totally matching KubeCube version. The `appVersion` of Chart.yaml will pin to specifield KubeCube version.
 
 ## Prerequisites
 
