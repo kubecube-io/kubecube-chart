@@ -85,6 +85,16 @@ spec:
               value: "{{ .Values.kubecube.env.retainMemberClusterResource }}"
             - name: WARDEN_REGISTER_MODE_ENABLE
               value: "{{ .Values.kubecube.env.wardenRegisterModeEnable }}"
+            - name: CLUSTER_CLIENT_QPS
+              value: "{{ .Values.kubecube.env.clusterClientQps }}"
+            - name: CLUSTER_CLIENT_BURST
+              value: "{{ .Values.kubecube.env.clusterClientBurst }}"
+            - name: CLUSTER_CLIENT_TIMEOUT_SECONDS
+              value: "{{ .Values.kubecube.env.clusterClientTimeoutSeconds }}"
+            - name: DISCOVERY_CACHE_SYNC_ENABLE
+              value: "{{ .Values.kubecube.env.discoveryCacheSyncEnable }}"
+            - name: DISCOVERY_CACHE_SYNC_PERIOD
+              value: "{{ .Values.kubecube.env.discoveryCacheSyncPeriod }}"
           livenessProbe:
             httpGet:
               path: /healthz

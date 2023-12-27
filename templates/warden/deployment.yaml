@@ -56,6 +56,8 @@ spec:
             - -pivot-cluster-kubeconfig=/etc/kubeconfigs/pivot-kubeconfig
             - -tls-cert=/etc/tls/tls.crt
             - -tls-key=/etc/tls/tls.key
+            - -wait-second={{ .Values.warden.containers.warden.args.waitSecond }}
+            - -period-second={{ .Values.warden.containers.warden.args.periodSecond }}
           env:
             - name: CUBE_NAMESPACE
               value: {{ template "kubecube.namespace" . }}
@@ -67,6 +69,14 @@ spec:
               value: Asia/Shanghai
             - name: DETACHED_NS_LABEL_KEY
               value: {{ .Values.warden.containers.warden.env.DetachedNsLabelKey }}
+            - name: CLUSTER_CLIENT_QPS
+              value: "{{ .Values.warden.containers.warden.env.clusterClientQps }}"
+            - name: CLUSTER_CLIENT_BURST
+              value: "{{ .Values.warden.containers.warden.env.clusterClientBurst }}"
+            - name: CLUSTER_CLIENT_TIMEOUT_SECONDS
+              value: "{{ .Values.warden.containers.warden.env.clusterClientTimeoutSeconds }}"
+            - name: CREATE_HNC_NS
+              value: "{{ .Values.warden.containers.warden.env.createHncNs }}"
           image: "{{ .Values.global.hub.registry }}/{{ .Values.global.hub.project }}/{{ .Values.global.images.warden }}"
           imagePullPolicy: IfNotPresent
           name: warden
