@@ -83,7 +83,7 @@ global:
 
   # kubecube hub config
   hub:
-    registry: hub.c.163.com
+    registry: docker.io
     project: kubecube
     username: kubecube
     password: XXX
@@ -99,14 +99,14 @@ global:
     audit: audit:v1.2.0
     webconsole: webconsole:v1.3.0
     cloudshell: cloudshell:v1.2.6
-    hnc: hnc/hnc-manager:v1.0.0
-    ingressController: ingress-nginx/controller:v1.2.0
-    ingressControllerJob: ingress-nginx/kube-webhook-certgen:v1.1.1
-    localPathStorageProvisioner: rancher/local-path-provisioner:v0.0.19-m
+    hnc: hnc-manager:v1.0.0
+    ingressController: ingress-nginx-controller:v1.2.0
+    ingressControllerJob: ingress-nginx-kube-webhook-certgen:v1.1.1
+    localPathStorageProvisioner: rancher-local-path-provisioner:v0.0.19-m
     localPathStorageConfigmap: busybox:latest-m
-    metricsServer: rancher/metrics-server:v0.4.1-m
-    cfssl: cfssl:latest
-    kubectl: bitnami/kubectl:1.25.7
+    metricsServer: rancher-metrics-server:v0.4.1-m
+    cfssl: cfssl:v1.6.5
+    kubectl: bitnami-kubectl:1.25.7
 
 kubecube:
   # kubecube/deployment.yaml
