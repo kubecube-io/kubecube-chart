@@ -242,6 +242,7 @@ webconsole:
   tolerations:
     - key: node-role.kubernetes.io/master
       operator: Exists
+  jwtSecret: 56F0D8DB90241C6E
 
 cloudshell:
   # cloudshell/deployment.yaml
